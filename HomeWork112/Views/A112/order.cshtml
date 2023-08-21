@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HomeWork112.Models.orderlist>
+
+@{
+    ViewBag.Title = "order";
+}
+
+<h2>本月份訂單清冊</h2>
+<form action="amountList" method="get" >
+    <select name="optionValue">
+        @foreach (var item in ViewBag.Datalist)
+        {
+            <option>@item</option>
+        }
+    </select>
+    <input type="submit" value="查詢" />
+    <a class="btn btn-primary" href="orderListCount">依帳號統計</a>
+</form>
+
+<table class="table table-striped ">
+    <thead class="table-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cAccount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.oAmount)
+            </th>
+        </tr>
+     </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cAccount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.oAmount)
+                </td>
+            </tr>
+        }
+
+</table>

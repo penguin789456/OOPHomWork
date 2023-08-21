@@ -1,0 +1,46 @@
+﻿@model HomeWork112.Models.custom
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head> 
+<body>
+    <div class="container m-5 ">
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <div class="">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="input-group mt-2">
+                            @Html.LabelFor(model => model.cName, new { @class = "input-group-text text-danger" })
+                            @Html.EditorFor(model => model.cName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <p>@Html.ValidationMessageFor(model => model.cName)</p>
+                        <div class="input-group mt-2">
+                            @Html.LabelFor(model => model.cAccount, new { @class = "input-group-text text-danger" })
+                            @Html.EditorFor(model => model.cAccount, new { HtmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <p>
+                            @Html.ValidationMessageFor(model => model.cAccount)
+                        </p>
+                        <div class="input-group mt-2 mb-2">
+                            @Html.LabelFor(model => model.cPasswd, new { @class = "input-group-text text-danger" })
+                            @Html.EditorFor(model => model.cPasswd, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <p>
+                            @Html.ValidationMessageFor(model => model.cPasswd)
+                        </p>
+                        <input type="submit" value="新增"  class="btn btn-primary" style="width:150px"/>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

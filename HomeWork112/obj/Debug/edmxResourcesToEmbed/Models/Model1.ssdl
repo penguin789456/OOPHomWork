@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="A11010112Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="custom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cCard" Type="smallint" Nullable="false" />
+    <Property Name="cAccount" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cPasswd" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'C:\USERS\USER\SOURCE\REPOS\HOMEWORK112\HOMEWORK112\APP_DATA\A11010112.MDF.dbo.orderlist' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="orderlist">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="cAccount" />
+      <PropertyRef Name="pTitle" />
+      <PropertyRef Name="oAmount" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="cAccount" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="pTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="oAmount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pAddr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="PImage" Type="varchar" MaxLength="50" />
+    <Property Name="pNote" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="A11010112ModelStoreContainer">
+    <EntitySet Name="custom" EntityType="Self.custom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orderlist" EntityType="Self.orderlist" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [orderlist].[Id] AS [Id], 
+    [orderlist].[cAccount] AS [cAccount], 
+    [orderlist].[pTitle] AS [pTitle], 
+    [orderlist].[oAmount] AS [oAmount]
+    FROM [dbo].[orderlist] AS [orderlist]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

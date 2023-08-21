@@ -1,0 +1,49 @@
+﻿@model IEnumerable<HomeWork112.Models.product>
+
+@{
+    ViewBag.Title = "indexSet";
+}
+
+<h1 style="color:orange">產品清單</h1>
+<table class="table table-striped ">
+    <thead style="color:white;background-color:forestgreen;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pAddr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pNote)
+            </th>
+        </tr>
+    </thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="~/RAW/@(Html.DisplayFor(modelItem => item.PImage)).jpg " />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pAddr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            
+            @Html.DisplayFor(modelItem => item.pTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pNote)
+        </td>
+    </tr>
+}
+
+</table>

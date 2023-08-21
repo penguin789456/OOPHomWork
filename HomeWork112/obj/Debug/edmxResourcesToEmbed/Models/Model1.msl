@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="A11010112ModelStoreContainer" CdmEntityContainer="A11010112Entities1">
+    <EntitySetMapping Name="custom">
+      <EntityTypeMapping TypeName="A11010112Model.custom">
+        <MappingFragment StoreEntitySet="custom">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+          <ScalarProperty Name="cCard" ColumnName="cCard" />
+          <ScalarProperty Name="cAccount" ColumnName="cAccount" />
+          <ScalarProperty Name="cPasswd" ColumnName="cPasswd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="product">
+      <EntityTypeMapping TypeName="A11010112Model.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="pTitle" ColumnName="pTitle" />
+          <ScalarProperty Name="pAddr" ColumnName="pAddr" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="PImage" ColumnName="PImage" />
+          <ScalarProperty Name="pNote" ColumnName="pNote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderlist">
+      <EntityTypeMapping TypeName="A11010112Model.orderlist">
+        <MappingFragment StoreEntitySet="orderlist">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="cAccount" ColumnName="cAccount" />
+          <ScalarProperty Name="pTitle" ColumnName="pTitle" />
+          <ScalarProperty Name="oAmount" ColumnName="oAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

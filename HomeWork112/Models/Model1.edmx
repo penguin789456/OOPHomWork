@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="A11010112Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="custom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cCard" Type="smallint" Nullable="false" />
+          <Property Name="cAccount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cPasswd" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'C:\USERS\USER\SOURCE\REPOS\HOMEWORK112\HOMEWORK112\APP_DATA\A11010112.MDF.dbo.orderlist' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="orderlist">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="cAccount" />
+            <PropertyRef Name="pTitle" />
+            <PropertyRef Name="oAmount" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="cAccount" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="pTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="oAmount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pAddr" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="PImage" Type="varchar" MaxLength="50" />
+          <Property Name="pNote" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="A11010112ModelStoreContainer">
+          <EntitySet Name="custom" EntityType="Self.custom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orderlist" EntityType="Self.orderlist" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [orderlist].[Id] AS [Id], 
+    [orderlist].[cAccount] AS [cAccount], 
+    [orderlist].[pTitle] AS [pTitle], 
+    [orderlist].[oAmount] AS [oAmount]
+    FROM [dbo].[orderlist] AS [orderlist]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="A11010112Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="custom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cCard" Type="Int16" Nullable="false" />
+          <Property Name="cAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cPasswd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="PImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pNote" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="orderlist">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="cAccount" />
+            <PropertyRef Name="pTitle" />
+            <PropertyRef Name="oAmount" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="cAccount" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="pTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="oAmount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="A11010112Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="custom" EntityType="Self.custom" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="orderlist" EntityType="Self.orderlist" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="A11010112ModelStoreContainer" CdmEntityContainer="A11010112Entities1">
+          <EntitySetMapping Name="custom">
+            <EntityTypeMapping TypeName="A11010112Model.custom">
+              <MappingFragment StoreEntitySet="custom">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="cCard" ColumnName="cCard" />
+                <ScalarProperty Name="cAccount" ColumnName="cAccount" />
+                <ScalarProperty Name="cPasswd" ColumnName="cPasswd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="A11010112Model.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="pTitle" ColumnName="pTitle" />
+                <ScalarProperty Name="pAddr" ColumnName="pAddr" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="PImage" ColumnName="PImage" />
+                <ScalarProperty Name="pNote" ColumnName="pNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderlist">
+            <EntityTypeMapping TypeName="A11010112Model.orderlist">
+              <MappingFragment StoreEntitySet="orderlist">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="cAccount" ColumnName="cAccount" />
+                <ScalarProperty Name="pTitle" ColumnName="pTitle" />
+                <ScalarProperty Name="oAmount" ColumnName="oAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

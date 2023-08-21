@@ -1,0 +1,30 @@
+﻿@model IEnumerable<HomeWork112.Models.customCount>
+
+@{
+    ViewBag.Title = "orderListCount";
+}
+
+<h2>依帳號統計</h2>
+<table class="table w-25">
+    <thead class="bg-success">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.oAmount)
+            </th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.oAmount)
+        </td>
+    </tr>
+}
+</table>

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        body{
+            padding:0;
+        }
+        a{
+            color:white;
+            text-decoration:none;
+            font-size:20px;
+        }
+        .navbar-header {
+            color: white;
+            text-align: center;
+            background-color: cornflowerblue;
+            width: 80%;
+            height: 100%;
+            margin:auto;
+        }
+        img {
+            object-fit: cover;
+            width: 150px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <h1>譚秉弘公司歡迎你</h1>
+            <h2>網路商店</h2>
+            <br />
+            <table>
+                <tr>
+                    <td>
+                        @Html.ActionLink("首頁", "index") &nbsp
+                    </td>
+                    <td>
+                        @Html.ActionLink("檢視訂單", "order")&nbsp
+                    </td>
+                    <td>
+                        @Html.ActionLink("帳號管理", "CustomList")&nbsp
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>公司地址：新北市板橋區資管路112號</p>
+            <p>客服電話：02-12345678</p>
+            <p>&copy; @DateTime.Now.Year - 版權所有</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

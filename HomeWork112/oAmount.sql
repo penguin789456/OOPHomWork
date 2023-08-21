@@ -1,0 +1,1 @@
+﻿select cName,sum(orderlist.oAmount) as oAmount from custom inner join orderlist on orderlist.cAccount=custom.cAccount group by cName
